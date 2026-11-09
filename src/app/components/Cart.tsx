@@ -16,16 +16,21 @@ export function Cart() {
         id : Date.now(),
         productName : `새로운 상품 ${Date.now()}`,
         imgURL : "./test_image.jpg",
-        stock : Math.floor(Math.random() * 20),
-        cost : Math.floor(Math.random() * 10000),
+        stock :  Math.max(1, Math.floor(Math.random() * 20)),
+        cost : Math.max(2, Math.floor(Math.random() * 10000)),
         checked : true,
         count : 1
     };
 
+    const allItemCount = products.reduce((count : number, product : ProductType) => {
+        count += product.count
+        return count
+    }, 0)
+
     return (
         <div id="Cart-Container">
             <div id="Cart-Header">
-                <h2 id="Cart-Header-Name">Your cart</h2>
+                <h2 id="Cart-Header-Name">Your cart ({allItemCount})</h2>
                 <button id="Cart-Close-Button" type="button">
                     <svg id="Cart-Close-Icon" width="20" height="20" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg">
                         <path d="M5 5L10 10M10 10L15 15M10 10L15 5M10 10L5 15" strokeWidth="1.25" strokeLinecap="round" stroke="#09090B"/>
@@ -75,31 +80,29 @@ function ListItem({ product } : ProductList) {
     return (
         <ul id="In-Item">
             <img id="Cart-Item-Img" src={product.imgURL} />
-            <div id="Cart-Item-Info">
-                <div id="Cart-Item-Distance">
-                    <p id="Cart-Item-Name">{product.productName}</p>
-                    <div id="Cart-Item-Cost">
-                        <div id="Cart-Count-Setting">
-                            <button id="Cart-Count-Minus" type="button" tabIndex={-1} onClick={(event) => {
-                                    handleUpdateCount(product.id, product.count -= 1);}
-                                    }>
-                                <svg width="10" height="1" viewBox="0 0 10 1" fill="none" xmlns="http://www.w3.org/2000/svg">
-                                    <path d="M0 0.5H9.33333" stroke="#09090B"/>
-                                </svg>
-                            </button>
-                            <div id="Cart-Item-Count-Frame">
-                                <p id="Cart-Item-Count">{product.count}</p>
-                            </div>
-                            <button id="Cart-Count-Plus" type="button" tabIndex={-1} onClick={(event) => {
-                                    handleUpdateCount(product.id, product.count += 1);}
-                                    }>
-                                <svg width="10" height="10" viewBox="0 0 10 10" fill="none"     xmlns="http://www.w3.org/2000/svg">
-                                    <path d="M0 4.66667H4.66667M4.66667 4.66667H9.33333M4.66667 4.66667V0M4.66667 4.66667V9.33333" stroke="#09090B"/>
-                                </svg>
-                            </button>
+            <div id="Cart-Item-Distance">
+                <p id="Cart-Item-Name">{product.productName}</p>
+                <div id="Cart-Item-Cost">
+                    <div id="Cart-Count-Setting">
+                        <button id="Cart-Count-Minus" type="button" tabIndex={-1} onClick={(event) => {
+                                handleUpdateCount(product.id, product.count -= 1);}
+                                }>
+                            <svg width="10" height="1" viewBox="0 0 10 1" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                <path d="M0 0.5H9.33333" stroke="#09090B"/>
+                            </svg>
+                        </button>
+                        <div id="Cart-Item-Count-Frame">
+                            <p id="Cart-Item-Count">{product.count}</p>
                         </div>
-                        <p id="Cart-Explain">${product.cost * product.count}</p>
+                        <button id="Cart-Count-Plus" type="button" tabIndex={-1} onClick={(event) => {
+                                handleUpdateCount(product.id, product.count += 1);}
+                                }>
+                            <svg width="10" height="10" viewBox="0 0 10 10" fill="none"     xmlns="http://www.w3.org/2000/svg">
+                                <path d="M0 4.66667H4.66667M4.66667 4.66667H9.33333M4.66667 4.66667V0M4.66667 4.66667V9.33333" stroke="#09090B"/>
+                            </svg>
+                        </button>
                     </div>
+                    <p id="Cart-Explain">${product.cost * product.count}</p>
                 </div>
             </div>
         </ ul>
