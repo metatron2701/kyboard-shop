@@ -468,15 +468,13 @@
 
 #Cart-Item-Count {
     /* 1 */
-
-    width: 6px;
     height: 16px;
 
     font-family: 'Inter';
     font-style: normal;
     font-weight: 400;
     font-size: 12px;
-    line-height: 16px;
+    line-height: normal;
     /* 상자 높이와 동일 또는 133% */
     text-align: center;
 

@@ -16,8 +16,8 @@ export function Cart() {
         id : Date.now(),
         productName : `새로운 상품 ${Date.now()}`,
         imgURL : "./test_image.jpg",
-        stock :  Math.max(1, Math.floor(Math.random() * 20)),
-        cost : Math.max(2, Math.floor(Math.random() * 10000)),
+        stock :  Math.max(2, Math.floor(Math.random() * 20)),
+        cost : Math.max(1, Math.floor(Math.random() * 10000)),
         checked : true,
         count : 1
     };
