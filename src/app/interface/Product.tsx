@@ -4,7 +4,6 @@ export interface ProductType {
     imgURL : string,
     stock : number,
     cost : number,
-    checked : boolean,
     count : number
 }
 

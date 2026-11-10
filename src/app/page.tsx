@@ -25,34 +25,21 @@ export default function Home() {
 
   function handleUpdateCount(id : number, newCount : number) {
     setProducts((prevProducts : ProductType[]) => prevProducts.map((product : ProductType) => {
-        if (product.id === id) {
-          if (newCount > 0) {
-            const targetProduct = products.find((product : ProductType) => product.id === id);
+      if (product.id === id) {
+        const targetProduct = products.find((product : ProductType) => product.id === id);
 
-            if (targetProduct && newCount > targetProduct.stock) {
-              alert(`${targetProduct.productName}의 현재 재고수는 ${targetProduct.stock}개입니다.`);
-              newCount = targetProduct.stock;
-            }
-            
-            return { ...product, count : newCount};
-          } else {
-            handleRemoveProduct(product.id)
-          }
-        }
-        return product;
-      })
-    );
-  }
+        newCount = Math.max(0, newCount);
 
-  function handleUpdateChecked(id : number) {
-    setProducts((prevProducts : ProductType[]) => prevProducts.map((product : ProductType) => {
-        if (product.id === id) {
-          return {...product, checked: !product.checked}
+        if (targetProduct && newCount > targetProduct.stock) {
+          alert(`${targetProduct.productName}의 현재 재고수는 ${targetProduct.stock}개입니다.`);
+          newCount = targetProduct.stock;
         }
-        return product;
-      })
-    );
-  }
+        
+        return { ...product, count : newCount};
+      }
+      return product;
+    })
+  );}
 
   function handleRemoveProduct(id : number) {
     setProducts((prevProducts : ProductType[]) =>
@@ -61,7 +48,9 @@ export default function Home() {
   }
 
   function handleAddProduct(newProduct : ProductType) {
-    setProducts((prevProducts : ProductType[]) => [...prevProducts, newProduct]);
+    const newStock = Math.max(2, Math.floor(Math.random() * 20))
+    const newCost = Math.max(1, Math.floor(Math.random() * 10000))
+    setProducts((prevProducts : ProductType[]) => [...prevProducts, { ...newProduct, stock : newStock, cost : newCost}]);
   }
 
   return (
@@ -70,7 +59,7 @@ export default function Home() {
 
       </header>
       <main>
-        <CartContext.Provider value={{products, handleUpdateCount, handleUpdateChecked, handleRemoveProduct, handleAddProduct}}>
+        <CartContext.Provider value={{products, handleUpdateCount, handleRemoveProduct, handleAddProduct}}>
           <Cart />
         </CartContext.Provider>
       </main>
