@@ -1,0 +1,33 @@
+@import 'tailwindcss';
+
+@theme {
+  --font-sans: Inter, 'Apple SD Gothic Neo', 'Malgun Gothic', ui-sans-serif, system-ui, sans-serif;
+}
+
+@layer base {
+  html {
+    background: #fafafa;
+  }
+
+  body {
+    min-width: 320px;
+    color: #18181b;
+    background: #fafafa;
+    -webkit-font-smoothing: antialiased;
+  }
+
+  button,
+  select {
+    cursor: pointer;
+  }
+
+  button:disabled,
+  select:disabled {
+    cursor: not-allowed;
+  }
+
+  ::selection {
+    color: #ffffff;
+    background: #18181b;
+  }
+}

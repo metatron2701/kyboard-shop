@@ -1,0 +1,120 @@
+{
+  "slug": "products",
+  "returning": true,
+  "documents": [
+    {
+      "data": {
+        "name": "Slate 65",
+        "slug": "slate-65",
+        "basePrice": 189,
+        "images": ["ef63de27-942c-4608-973b-4eed54fd5606", "4264ff25-5649-499d-aa78-707b5b6ba0d9"],
+        "category": "keyboards",
+        "description": "A compact aluminum keyboard with a quiet, balanced sound profile. The gasket-mounted plate softens every keystroke without losing precision.",
+        "stockQuantity": 42,
+        "shippingFee": 0,
+        "options": [
+          { "label": "Charcoal / Linear", "value": "charcoal-linear", "priceAdjustment": 0 },
+          { "label": "Bone / Tactile", "value": "bone-tactile", "priceAdjustment": 12 }
+        ],
+        "brand": "MONO",
+        "kcCertificationNumber": "R-R-MKY-S65",
+        "salesStatus": "on-sale"
+      }
+    },
+    {
+      "data": {
+        "name": "Arc TKL",
+        "slug": "arc-tkl",
+        "basePrice": 229,
+        "images": ["4264ff25-5649-499d-aa78-707b5b6ba0d9", "ef63de27-942c-4608-973b-4eed54fd5606"],
+        "category": "keyboards",
+        "description": "A tenkeyless workhorse shaped for long days. CNC aluminum, hot-swap sockets, and a restrained silhouette with no wasted space.",
+        "stockQuantity": 18,
+        "shippingFee": 12,
+        "options": [
+          { "label": "Graphite / Linear", "value": "graphite-linear", "priceAdjustment": 0 },
+          { "label": "Silver / Silent", "value": "silver-silent", "priceAdjustment": 18 }
+        ],
+        "brand": "MONO",
+        "kcCertificationNumber": "R-R-MKY-ATK",
+        "salesStatus": "on-sale"
+      }
+    },
+    {
+      "data": {
+        "name": "Ivory Air",
+        "slug": "ivory-air",
+        "basePrice": 149,
+        "images": ["050dc222-34ec-4ce7-8511-07db4e3ae5c9", "62816d97-baba-4db3-bbdf-6a434c99b8e6"],
+        "category": "keyboards",
+        "description": "Low-profile wireless typing with a crisp, understated feel. Built for clean desks and seamless switching between three devices.",
+        "stockQuantity": 31,
+        "shippingFee": 0,
+        "options": [
+          { "label": "Mac layout", "value": "mac", "priceAdjustment": 0 },
+          { "label": "Windows layout", "value": "windows", "priceAdjustment": 0 }
+        ],
+        "brand": "FORM",
+        "kcCertificationNumber": "R-R-FRM-IVA",
+        "salesStatus": "on-sale"
+      }
+    },
+    {
+      "data": {
+        "name": "Graphite Silent Switches",
+        "slug": "graphite-silent-switches",
+        "basePrice": 39,
+        "images": ["f964004b-f61b-407a-b949-4770eb1856ba"],
+        "category": "switches",
+        "description": "A pack of 70 pre-lubed silent linear switches. Soft bottom-out, reduced return noise, and a steady 55g spring.",
+        "stockQuantity": 120,
+        "shippingFee": 6,
+        "options": [
+          { "label": "70 switches", "value": "70-pack", "priceAdjustment": 0 },
+          { "label": "110 switches", "value": "110-pack", "priceAdjustment": 18 }
+        ],
+        "brand": "MONO",
+        "kcCertificationNumber": "",
+        "salesStatus": "on-sale"
+      }
+    },
+    {
+      "data": {
+        "name": "PBT Monochrome Set",
+        "slug": "pbt-monochrome-set",
+        "basePrice": 79,
+        "images": ["bfee14bf-b16e-4636-a17f-4d4e98121c7c"],
+        "category": "keycaps",
+        "description": "Dye-sublimated PBT keycaps in warm gray and near-black. A complete 142-key set with support for compact and full-size layouts.",
+        "stockQuantity": 64,
+        "shippingFee": 7,
+        "options": [
+          { "label": "Warm gray", "value": "warm-gray", "priceAdjustment": 0 },
+          { "label": "Near black", "value": "near-black", "priceAdjustment": 0 }
+        ],
+        "brand": "MONO",
+        "kcCertificationNumber": "",
+        "salesStatus": "on-sale"
+      }
+    },
+    {
+      "data": {
+        "name": "Graphite Desk Mat",
+        "slug": "graphite-desk-mat",
+        "basePrice": 49,
+        "images": ["62816d97-baba-4db3-bbdf-6a434c99b8e6"],
+        "category": "housing",
+        "description": "A dense wool-blend desk surface that quiets movement and gives your keyboard a calm, grounded place to live.",
+        "stockQuantity": 75,
+        "shippingFee": 6,
+        "options": [
+          { "label": "Medium \u2014 70 \u00d7 30 cm", "value": "medium", "priceAdjustment": 0 },
+          { "label": "Large \u2014 90 \u00d7 40 cm", "value": "large", "priceAdjustment": 14 }
+        ],
+        "brand": "FORM",
+        "kcCertificationNumber": "",
+        "salesStatus": "on-sale"
+      }
+    }
+  ]
+}

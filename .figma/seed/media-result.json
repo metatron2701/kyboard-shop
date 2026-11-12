@@ -1,0 +1,213 @@
+{
+  "command": "createDocuments",
+  "result": {
+    "docs": [
+      {
+        "doc": {
+          "alt": "Slate 65 mechanical keyboard",
+          "url": "/api/media/file/slate-65-original.jpg",
+          "width": 1800,
+          "focalX": 50,
+          "focalY": 50,
+          "height": 1013,
+          "prefix": "",
+          "filename": "slate-65-original.jpg",
+          "filesize": 162205,
+          "mimeType": "image/jpeg",
+          "original": {
+            "url": "/api/media/file/slate-65-original.jpg",
+            "width": 1800,
+            "height": 1013,
+            "prefix": "",
+            "filename": "slate-65-original.jpg",
+            "filesize": 162205,
+            "mimeType": "image/jpeg",
+            "_objectKey": "86c8c3b0-091f-4cac-b358-e6254de2775c"
+          },
+          "_objectKey": "86c8c3b0-091f-4cac-b358-e6254de2775c",
+          "id": "ef63de27-942c-4608-973b-4eed54fd5606",
+          "createdAt": "2026-11-04T16:48:04.347Z",
+          "updatedAt": "2026-11-04T16:48:04.347Z",
+          "_h_folders": null,
+          "_h_tags": null,
+          "createdBy": null,
+          "updatedBy": null,
+          "thumbnailURL": null
+        },
+        "index": 0
+      },
+      {
+        "doc": {
+          "alt": "Arc tenkeyless keyboard",
+          "url": "/api/media/file/arc-tkl-original.jpg",
+          "width": 1800,
+          "focalX": 50,
+          "focalY": 50,
+          "height": 1200,
+          "prefix": "",
+          "filename": "arc-tkl-original.jpg",
+          "filesize": 128287,
+          "mimeType": "image/jpeg",
+          "original": {
+            "url": "/api/media/file/arc-tkl-original.jpg",
+            "width": 1800,
+            "height": 1200,
+            "prefix": "",
+            "filename": "arc-tkl-original.jpg",
+            "filesize": 128287,
+            "mimeType": "image/jpeg",
+            "_objectKey": "4c4d6509-f767-450c-a5d7-8d8d731397ef"
+          },
+          "_objectKey": "4c4d6509-f767-450c-a5d7-8d8d731397ef",
+          "id": "4264ff25-5649-499d-aa78-707b5b6ba0d9",
+          "createdAt": "2026-11-04T16:48:06.363Z",
+          "updatedAt": "2026-11-04T16:48:06.363Z",
+          "_h_folders": null,
+          "_h_tags": null,
+          "createdBy": null,
+          "updatedBy": null,
+          "thumbnailURL": null
+        },
+        "index": 1
+      },
+      {
+        "doc": {
+          "alt": "Ivory low profile keyboard",
+          "url": "/api/media/file/ivory-low-profile-original.jpg",
+          "width": 1800,
+          "focalX": 50,
+          "focalY": 50,
+          "height": 1800,
+          "prefix": "",
+          "filename": "ivory-low-profile-original.jpg",
+          "filesize": 313969,
+          "mimeType": "image/jpeg",
+          "original": {
+            "url": "/api/media/file/ivory-low-profile-original.jpg",
+            "width": 1800,
+            "height": 1800,
+            "prefix": "",
+            "filename": "ivory-low-profile-original.jpg",
+            "filesize": 313969,
+            "mimeType": "image/jpeg",
+            "_objectKey": "e7b40bac-3d12-4330-992d-30f8cccc59ed"
+          },
+          "_objectKey": "e7b40bac-3d12-4330-992d-30f8cccc59ed",
+          "id": "050dc222-34ec-4ce7-8511-07db4e3ae5c9",
+          "createdAt": "2026-11-04T16:48:08.555Z",
+          "updatedAt": "2026-11-04T16:48:08.555Z",
+          "_h_folders": null,
+          "_h_tags": null,
+          "createdBy": null,
+          "updatedBy": null,
+          "thumbnailURL": null
+        },
+        "index": 2
+      },
+      {
+        "doc": {
+          "alt": "Noir keyboard and mouse",
+          "url": "/api/media/file/noir-workspace-original.jpg",
+          "width": 1800,
+          "focalX": 50,
+          "focalY": 50,
+          "height": 1200,
+          "prefix": "",
+          "filename": "noir-workspace-original.jpg",
+          "filesize": 255705,
+          "mimeType": "image/jpeg",
+          "original": {
+            "url": "/api/media/file/noir-workspace-original.jpg",
+            "width": 1800,
+            "height": 1200,
+            "prefix": "",
+            "filename": "noir-workspace-original.jpg",
+            "filesize": 255705,
+            "mimeType": "image/jpeg",
+            "_objectKey": "d7354bbd-331c-4ad6-a23f-fc8e406018d7"
+          },
+          "_objectKey": "d7354bbd-331c-4ad6-a23f-fc8e406018d7",
+          "id": "f964004b-f61b-407a-b949-4770eb1856ba",
+          "createdAt": "2026-11-04T16:48:10.192Z",
+          "updatedAt": "2026-11-04T16:48:10.192Z",
+          "_h_folders": null,
+          "_h_tags": null,
+          "createdBy": null,
+          "updatedBy": null,
+          "thumbnailURL": null
+        },
+        "index": 3
+      },
+      {
+        "doc": {
+          "alt": "Form aluminum keyboard",
+          "url": "/api/media/file/form-aluminum-original.jpg",
+          "width": 1800,
+          "focalX": 50,
+          "focalY": 50,
+          "height": 3199,
+          "prefix": "",
+          "filename": "form-aluminum-original.jpg",
+          "filesize": 373278,
+          "mimeType": "image/jpeg",
+          "original": {
+            "url": "/api/media/file/form-aluminum-original.jpg",
+            "width": 1800,
+            "height": 3199,
+            "prefix": "",
+            "filename": "form-aluminum-original.jpg",
+            "filesize": 373278,
+            "mimeType": "image/jpeg",
+            "_objectKey": "dd393e91-f58e-4303-b309-ae336ce5e89e"
+          },
+          "_objectKey": "dd393e91-f58e-4303-b309-ae336ce5e89e",
+          "id": "bfee14bf-b16e-4636-a17f-4d4e98121c7c",
+          "createdAt": "2026-11-04T16:48:12.081Z",
+          "updatedAt": "2026-11-04T16:48:12.081Z",
+          "_h_folders": null,
+          "_h_tags": null,
+          "createdBy": null,
+          "updatedBy": null,
+          "thumbnailURL": null
+        },
+        "index": 4
+      },
+      {
+        "doc": {
+          "alt": "Graphite wireless keyboard",
+          "url": "/api/media/file/graphite-wireless-original.jpg",
+          "width": 1800,
+          "focalX": 50,
+          "focalY": 50,
+          "height": 2250,
+          "prefix": "",
+          "filename": "graphite-wireless-original.jpg",
+          "filesize": 277372,
+          "mimeType": "image/jpeg",
+          "original": {
+            "url": "/api/media/file/graphite-wireless-original.jpg",
+            "width": 1800,
+            "height": 2250,
+            "prefix": "",
+            "filename": "graphite-wireless-original.jpg",
+            "filesize": 277372,
+            "mimeType": "image/jpeg",
+            "_objectKey": "158f82b1-5b42-4331-9991-0527435cbe43"
+          },
+          "_objectKey": "158f82b1-5b42-4331-9991-0527435cbe43",
+          "id": "62816d97-baba-4db3-bbdf-6a434c99b8e6",
+          "createdAt": "2026-11-04T16:48:13.840Z",
+          "updatedAt": "2026-11-04T16:48:13.840Z",
+          "_h_folders": null,
+          "_h_tags": null,
+          "createdBy": null,
+          "updatedBy": null,
+          "thumbnailURL": null
+        },
+        "index": 5
+      }
+    ],
+    "errors": []
+  },
+  "success": true
+}

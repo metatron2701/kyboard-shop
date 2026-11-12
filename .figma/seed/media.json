@@ -1,0 +1,54 @@
+{
+  "slug": "media",
+  "returning": true,
+  "documents": [
+    {
+      "data": { "alt": "Slate 65 mechanical keyboard" },
+      "file": {
+        "source": "externalURL",
+        "url": "https://images.unsplash.com/photo-1589578228447-e1a4e481c6c8?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixlib=rb-4.1.0&q=84&w=1800",
+        "name": "slate-65.jpg"
+      }
+    },
+    {
+      "data": { "alt": "Arc tenkeyless keyboard" },
+      "file": {
+        "source": "externalURL",
+        "url": "https://images.unsplash.com/photo-1697022976768-2fd7f4e4c399?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixlib=rb-4.1.0&q=84&w=1800",
+        "name": "arc-tkl.jpg"
+      }
+    },
+    {
+      "data": { "alt": "Ivory low profile keyboard" },
+      "file": {
+        "source": "externalURL",
+        "url": "https://images.unsplash.com/photo-1669884210028-81aa4c7442e5?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixlib=rb-4.1.0&q=84&w=1800",
+        "name": "ivory-low-profile.jpg"
+      }
+    },
+    {
+      "data": { "alt": "Noir keyboard and mouse" },
+      "file": {
+        "source": "externalURL",
+        "url": "https://images.unsplash.com/photo-1637243218672-d338945efdf7?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixlib=rb-4.1.0&q=84&w=1800",
+        "name": "noir-workspace.jpg"
+      }
+    },
+    {
+      "data": { "alt": "Form aluminum keyboard" },
+      "file": {
+        "source": "externalURL",
+        "url": "https://images.unsplash.com/photo-1617096819670-6de2869bbd2e?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixlib=rb-4.1.0&q=84&w=1800",
+        "name": "form-aluminum.jpg"
+      }
+    },
+    {
+      "data": { "alt": "Graphite wireless keyboard" },
+      "file": {
+        "source": "externalURL",
+        "url": "https://images.unsplash.com/photo-1561112078-7d24e04c3407?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixlib=rb-4.1.0&q=84&w=1800",
+        "name": "graphite-wireless.jpg"
+      }
+    }
+  ]
+}
