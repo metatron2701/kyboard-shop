@@ -1,9 +1,18 @@
 import { Suspense } from 'react'
 import { ProductGrid } from '@/features/products/product-grid'
-import { getPreviewProducts } from '@/features/products/preview-data'
+import { getProducts } from '@/features/products/api'
+import type { StoreProduct } from '@/lib/store-shared'
 
-export default function ProductsPage() {
-  const initialProducts = getPreviewProducts()
+export default async function ProductsPage() {
+  let initialProducts: StoreProduct[] = []
+  try {
+    const apiProducts = await getProducts()
+    if (apiProducts && apiProducts.length > 0) {
+      initialProducts = apiProducts
+    }
+  } catch {
+    initialProducts = []
+  }
 
   return (
     <section className="mx-auto w-[min(80%,1440px)] py-20 max-lg:w-[92%]">

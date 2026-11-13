@@ -1,4 +1,4 @@
-import { useContext } from "react";
+import { useContext, useEffect } from "react";
 import "../style.css";
 import { ProductCartContext } from "./CartContext";
 import type { ProductList, ProductType } from "../interface/Product";
@@ -10,7 +10,14 @@ type CartProps = {
 };
 
 export function Cart({ open, onClose } : CartProps) {
-    const {products, handleClearCart} = useContext(ProductCartContext);
+    const { products, refreshCart } = useContext(ProductCartContext);
+
+    // 장바구니 서랍이 열릴 때(false -> true) 딱 1번만 백엔드 최신 상태 동기화 (무한 루프 방지)
+    useEffect(() => {
+        if (open && typeof refreshCart === "function") {
+            refreshCart();
+        }
+    }, [open]);
 
     const router = useRouter();
 
@@ -75,8 +82,8 @@ export function Cart({ open, onClose } : CartProps) {
                                 type="button"
                                 disabled={allItemCount === 0}
                                 onClick={() => {
-                                    handleClearCart();
                                     onClose();
+                                    router.push('/checkout');
                                 }}
                         >CHECKOUT</button>
                     </div>
@@ -113,7 +120,13 @@ function ListItem({ product } : ProductList) {
 
     return (
         <ul id="In-Item">
-            <img id="Cart-Item-Img" src={product.thumbnailUrl} />
+            {product.thumbnailUrl ? (
+                <img id="Cart-Item-Img" src={product.thumbnailUrl} alt={product.name || "상품 이미지"} />
+            ) : (
+                <div id="Cart-Item-Img" style={{ display: 'flex', alignItems: 'center', justifyContent: 'center', backgroundColor: '#f4f4f5', fontSize: '11px', color: '#a1a1aa' }}>
+                    NO IMG
+                </div>
+            )}
             <div id="Cart-Item-Distance">
                 <div id="Cart-Item-Main">
                     <p id="Cart-Item-Name">{product.name}</p>

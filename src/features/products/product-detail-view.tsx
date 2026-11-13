@@ -56,7 +56,7 @@ export function ProductDetailView({ product }: ProductDetailViewProps) {
   }
 
   // 장바구니 담기
-  const handleAddToCart = () => {
+  const handleAddToCart = async () => {
     if (isUnavailable) {
       alert(
         isDiscontinued ? '판매가 중단된 상품입니다.' : '현재 품절되어 장바구니에 담을 수 없습니다.',
@@ -78,8 +78,9 @@ export function ProductDetailView({ product }: ProductDetailViewProps) {
       includeAssembly: false,
     }
 
-    handleAddProduct(newProduct)
-    openCart()
+    if (await handleAddProduct(newProduct)) {
+      openCart()
+    }
   }
 
   return (

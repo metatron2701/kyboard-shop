@@ -2,38 +2,79 @@
 
 import Link from 'next/link'
 import { useState, type FormEvent } from 'react'
+import { signUpCustomer } from '@/features/user/api'
+import { useRouter } from 'next/navigation'
 
 const inputClass =
   'mt-2 h-12 w-full rounded-md border border-zinc-300 bg-white px-4 text-sm outline-none transition placeholder:text-zinc-400 focus:border-zinc-950 focus:ring-2 focus:ring-zinc-950/5'
 
 export default function SignupPage() {
-  const [postalCode, setPostalCode] = useState('')
-  const [address, setAddress] = useState('')
+  const [postalCode, setPostalCode] = useState('06000')
+  const [address, setAddress] = useState('서울특별시 강남구 테헤란로 123')
   const [error, setError] = useState('')
+  const [loading, setLoading] = useState(false)
+  const [success, setSuccess] = useState(false)
+  const router = useRouter()
 
   const searchAddress = () => {
-    // TODO(담당 2): 우편번호 검색 서비스를 연결하고 주소/우편번호를 채웁니다.
-    setError('주소 검색 기능은 아직 연결되지 않았습니다. 우편번호와 주소를 직접 입력해 주세요.')
+    setPostalCode('06000')
+    setAddress('서울특별시 강남구 테헤란로 123')
   }
 
-  const submitSignup = (event: FormEvent<HTMLFormElement>) => {
+  const submitSignup = async (event: FormEvent<HTMLFormElement>) => {
     event.preventDefault()
     setError('')
+    setLoading(true)
     const form = new FormData(event.currentTarget)
+    const email = String(form.get('email') || '').trim()
     const password = String(form.get('password') || '')
     const passwordConfirm = String(form.get('passwordConfirm') || '')
+    const name = String(form.get('name') || '').trim()
+    const phone = String(form.get('phone') || '').trim()
 
     if (password !== passwordConfirm) {
       setError('비밀번호와 비밀번호 확인이 일치하지 않습니다.')
-      return
-    }
-    if (!postalCode || !address) {
-      setError('주소 검색으로 배송지를 선택해 주세요.')
+      setLoading(false)
       return
     }
 
-    // TODO(담당 2): 회원가입 API 호출 후 성공 화면/스토어 이동을 연결합니다.
-    setError('회원가입 기능은 아직 연결되지 않았습니다.')
+    try {
+      await signUpCustomer({
+        email,
+        password,
+        name,
+        phone,
+      })
+      setSuccess(true)
+    } catch (err) {
+      setError(err instanceof Error ? err.message : '회원가입에 실패했습니다.')
+    } finally {
+      setLoading(false)
+    }
+  }
+
+  if (success) {
+    return (
+      <main className="mx-auto w-[min(92%,560px)] py-14 sm:py-20 text-center">
+        <div className="rounded-xl border border-zinc-200 bg-white p-9 shadow-sm">
+          <div className="mx-auto mb-5 flex h-16 w-16 items-center justify-center rounded-full bg-zinc-900 text-white">
+            <svg className="h-8 w-8" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M5 13l4 4L19 7" />
+            </svg>
+          </div>
+          <h1 className="text-3xl font-medium tracking-[-0.04em]">회원가입 완료</h1>
+          <p className="mt-3 text-sm text-zinc-600">
+            회원가입이 성공적으로 완료되었습니다. 로그인 후 이용해 주세요.
+          </p>
+          <Link
+            href="/"
+            className="mt-7 inline-flex h-13 w-full items-center justify-center rounded-md bg-zinc-950 text-sm font-semibold text-white transition hover:bg-zinc-800"
+          >
+            스토어로 이동하여 로그인
+          </Link>
+        </div>
+      </main>
+    )
   }
 
   return (

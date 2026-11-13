@@ -1756,7 +1756,7 @@ export function adaptToStoreProduct(item: Product): StoreProduct {
     item.status === 'DISCONTINUED'
 
   return {
-    id: String(item.productId),
+    id: item.productId,
     name: item.name,
     slug: String(item.productId),
     basePrice: item.basePrice,

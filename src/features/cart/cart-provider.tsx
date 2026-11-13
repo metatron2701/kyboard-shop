@@ -3,6 +3,8 @@
 import { createContext, useCallback, useContext, useMemo, useState, type ReactNode } from "react";
 import { Cart } from "./components/Cart"; 
 import type { CartItem } from "@/features/cart/types";
+import { ProductCartContext } from "./components/CartContext";
+import type { ProductType } from "./interface/Product";
 
 type CartContextValue = {
   items: CartItem[];
@@ -18,8 +20,6 @@ type CartContextValue = {
 };
 
 const CartContext = createContext<CartContextValue | null>(null);
-const emptyItems: CartItem[] = [];
-const emptyKeys: string[] = [];
 
 export function useCart() {
   const value = useContext(CartContext);
@@ -29,29 +29,94 @@ export function useCart() {
 
 export function CartProvider({ children }: { children: ReactNode }) {
   const [cartOpen, setCartOpen] = useState(false);
-  const items = emptyItems;
-  const selectedItems = emptyItems;
-  const selectedKeys = emptyKeys;
+  const cartCtx = useContext(ProductCartContext);
+  const products: ProductType[] = cartCtx?.products || [];
+  const handleUpdateCount = cartCtx?.handleUpdateCount;
+  const handleClearCart = cartCtx?.handleClearCart;
+  const handleAddProduct = cartCtx?.handleAddProduct;
 
-  const addItem = useCallback((_item: CartItem) => {
-    // TODO(담당 3): 장바구니 상태/API에 상품을 추가합니다.
-    setCartOpen(true);
+  const items = useMemo<CartItem[]>(() => {
+    return products.map((p) => ({
+      productId: String(p.productId),
+      slug: String(p.productId),
+      name: p.name,
+      image: p.thumbnailUrl,
+      optionValue: p.customBuildId ? `custom-${p.customBuildId}` : undefined,
+      optionLabel: p.buildName || (p.includeAssembly ? '조립 대행 포함' : undefined),
+      unitPrice: p.price,
+      shippingFee: 0,
+      quantity: p.quantity,
+    }));
+  }, [products]);
+
+  const [deselectedIds, setDeselectedIds] = useState<Set<string>>(new Set());
+
+  const selectedItems = useMemo(() => {
+    return items.filter((item) => !deselectedIds.has(item.productId));
+  }, [items, deselectedIds]);
+
+  const addItem = useCallback(async (item: CartItem) => {
+    if (handleAddProduct) {
+      const isSuccess = await handleAddProduct({
+        productId: Number(item.productId),
+        name: item.name,
+        price: item.unitPrice,
+        stockQuantity: 999,
+        quantity: item.quantity,
+        thumbnailUrl: item.image,
+        partType: '',
+        additionalPrice: 0,
+        customBuildId: 0,
+        buildName: item.optionLabel || '',
+        includeAssembly: false,
+      });
+      if (isSuccess !== false) {
+        setCartOpen(true);
+      }
+    }
+  }, [handleAddProduct]);
+
+  const updateQuantity = useCallback((index: number, quantity: number) => {
+    const item = items[index];
+    if (item && handleUpdateCount) {
+      handleUpdateCount(Number(item.productId), quantity);
+    }
+  }, [items, handleUpdateCount]);
+
+  const toggleItemSelected = useCallback((item: CartItem) => {
+    setDeselectedIds((prev) => {
+      const next = new Set(prev);
+      if (next.has(item.productId)) {
+        next.delete(item.productId);
+      } else {
+        next.add(item.productId);
+      }
+      return next;
+    });
   }, []);
-  const updateQuantity = useCallback((_index: number, _quantity: number) => {
-    // TODO(담당 3): 장바구니 상품 수량을 변경합니다.
-  }, []);
-  const toggleItemSelected = useCallback((_item: CartItem) => {
-    // TODO(담당 3): 개별 상품 선택 상태를 변경합니다.
-  }, []);
-  const selectAllItems = useCallback((_selected: boolean) => {
-    // TODO(담당 3): 전체 상품 선택 상태를 변경합니다.
-  }, []);
+
+  const selectAllItems = useCallback((selected: boolean) => {
+    if (selected) {
+      setDeselectedIds(new Set());
+    } else {
+      setDeselectedIds(new Set(items.map((i) => i.productId)));
+    }
+  }, [items]);
+
   const clearSelectedItems = useCallback(() => {
-    // TODO(담당 3): 주문 완료 후 선택 상품을 장바구니에서 제거합니다.
-  }, []);
+    if (handleClearCart) {
+      handleClearCart();
+    }
+    setDeselectedIds(new Set());
+  }, [handleClearCart]);
+
   const clearCart = useCallback(() => {
-    // TODO(담당 3): 장바구니를 비웁니다.
-  }, []);
+    if (handleClearCart) {
+      handleClearCart();
+    }
+    setDeselectedIds(new Set());
+  }, [handleClearCart]);
+
   const openCart = useCallback(() => setCartOpen(true), []);
   const closeCart = useCallback(() => setCartOpen(false), []);
 

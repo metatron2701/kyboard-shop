@@ -2,8 +2,8 @@ import Image from 'next/image'
 import Link from 'next/link'
 import { ArrowIcon } from '@/components/icons'
 import { ProductCard } from '@/components/common/product-card'
-import { mediaFrom } from '@/lib/store-shared'
-import { getPreviewProducts } from '@/features/products/preview-data'
+import { mediaFrom, type StoreProduct } from '@/lib/store-shared'
+import { getProducts } from '@/features/products/api'
 
 const categoryCards = [
   {
@@ -15,8 +15,14 @@ const categoryCards = [
   { label: 'KEYCAPS', detail: 'A new texture for every key', href: '/products?category=keycaps' },
 ]
 
-export default function HomePage() {
-  const products = getPreviewProducts()
+export default async function HomePage() {
+  let products: StoreProduct[] = []
+  try {
+    const apiProducts = await getProducts()
+    if (apiProducts && apiProducts.length > 0) {
+      products = apiProducts
+    }
+  } catch {}
   const hero = products[0]
   const heroImage = hero ? mediaFrom(hero.images[0]) : null
 
@@ -74,7 +80,7 @@ export default function HomePage() {
           </div>
         ) : (
           <div className="rounded-xl border border-dashed border-zinc-300 py-24 text-center text-sm text-zinc-500">
-            Products are being prepared in the studio.
+            등록된 상품이 없습니다.
           </div>
         )}
       </section>

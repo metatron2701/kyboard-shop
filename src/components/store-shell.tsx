@@ -5,7 +5,8 @@ import { usePathname } from 'next/navigation'
 import { useContext, useEffect, useState, type FormEvent, type ReactNode } from 'react'
 import { CloseIcon } from '@/components/icons'
 import { SiteHeader } from '@/components/common/site-header'
-import type { ApiUser } from '@/features/auth/api'
+import { getCurrentUser, logIn, logOut, type ApiUser } from '@/features/auth/api'
+import { signUpCustomer } from '@/features/user/api'
 import { useCart } from '@/features/cart/cart-provider'
 import { ProductCartContext } from '@/features/cart/components/CartContext'
 import { ProductType } from '@/features/cart/interface/Product'
@@ -19,7 +20,7 @@ export function StoreShell({ children }: { children: ReactNode }) {
   const [authOpen, setAuthOpen] = useState(false)
   const [authMode, setAuthMode] = useState<'login' | 'register'>('login')
   const [authUser, setAuthUser] = useState<AppUser | null>(null)
-  const authPending = false
+  const [authPending, setAuthPending] = useState(false)
   const [authError, setAuthError] = useState('')
   const [agreements, setAgreements] = useState({
     marketing: false,
@@ -27,6 +28,12 @@ export function StoreShell({ children }: { children: ReactNode }) {
     service: false,
   })
   const [navVisible, setNavVisible] = useState(true)
+
+  useEffect(() => {
+    getCurrentUser().then(({ user }) => {
+      if (user) setAuthUser(user)
+    })
+  }, [])
 
   useEffect(() => {
     if (!pathname.startsWith('/products/')) return
@@ -46,16 +53,52 @@ export function StoreShell({ children }: { children: ReactNode }) {
     setAuthOpen(true)
   }
 
-  const submitAuth = (event: FormEvent<HTMLFormElement>) => {
+  const submitAuth = async (event: FormEvent<HTMLFormElement>) => {
     event.preventDefault()
-    // TODO(담당 1): 로그인 입력 검증 후 로그인 API를 호출하고 세션 상태를 반영합니다.
-    setAuthError('로그인 기능은 아직 연결되지 않았습니다.')
+    setAuthError('')
+    setAuthPending(true)
+    const form = new FormData(event.currentTarget)
+    const email = String(form.get('email') || '').trim()
+    const password = String(form.get('password') || '')
+
+    try {
+      if (authMode === 'login') {
+        const { user } = await logIn(email, password)
+        setAuthUser(user)
+        setAuthOpen(false)
+      } else {
+        const passwordConfirm = String(form.get('passwordConfirm') || '')
+        const name = String(form.get('name') || '').trim()
+        const phone = String(form.get('phone') || '').trim()
+
+        if (password !== passwordConfirm) {
+          setAuthError('비밀번호가 일치하지 않습니다.')
+          setAuthPending(false)
+          return
+        }
+
+        await signUpCustomer({ email, password, name, phone })
+        // 가입 성공 시 자동 로그인
+        const { user } = await logIn(email, password)
+        setAuthUser(user)
+        setAuthOpen(false)
+      }
+    } catch (err) {
+      setAuthError(err instanceof Error ? err.message : '요청 처리에 실패했습니다.')
+    } finally {
+      setAuthPending(false)
+    }
   }
 
-  const logout = () => {
-    // TODO(담당 1): 로그아웃 API 호출 후 세션과 사용자 상태를 초기화합니다.
-    setAuthUser(null)
-    setAuthOpen(false)
+  const logout = async () => {
+    setAuthPending(true)
+    try {
+      await logOut()
+      setAuthUser(null)
+      setAuthOpen(false)
+    } finally {
+      setAuthPending(false)
+    }
   }
 
   const cartCount = products.reduce(

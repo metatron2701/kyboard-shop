@@ -8,14 +8,13 @@ import { ProductCartContext } from '../cart/components/CartContext'
 import { ProductType } from '../cart/interface/Product' 
 
 export function AddToCart({ product, image }: { product: StoreProduct; image?: string }) {
-  const { openCart } = useCart()
+  const { openCart } = useCart();
   const { handleAddProduct } = useContext(ProductCartContext);
   const [quantity, setQuantity] = useState(1)
   const option = product.options?.[0]
-  const optionValue = option?.value ?? ''
   const unitPrice = product.basePrice + (option?.priceAdjustment ?? 0)
 
-  const handleClick = () => {
+  const handleClick = async () => {
     const newProduct: ProductType = {
       productId: product.id,
       name: product.name,
@@ -29,9 +28,10 @@ export function AddToCart({ product, image }: { product: StoreProduct; image?: s
       buildName: '',
       includeAssembly: false,
     }
-
-    handleAddProduct(newProduct)
-    openCart()
+    
+    if (await handleAddProduct(newProduct)) {
+      openCart()
+    }
   }
 
   return (
